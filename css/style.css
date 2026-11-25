@@ -560,34 +560,39 @@ p { margin: 0; }
 .quote:not(.quote--dark) figcaption b { color: var(--ink); }
 
 /* ---------- Vision ---------- */
-.vision-grid {
+/* Full-height split: copy left, founder photo bleeds to the right edge */
+.vision-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: var(--gap-lg);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  min-height: clamp(560px, calc(100vh - 110px), 940px);
 }
+.vision-copy-wrap {
+  display: flex; align-items: center;
+  padding: var(--section) var(--gap-lg) var(--section) var(--gutter);
+}
+.vision-copy { max-width: 44rem; }
 .vision-copy .h1 { margin-bottom: var(--s-5); }
 .portrait {
-  position: relative;
-  min-height: 460px;
-  border-radius: var(--r-card);
-  overflow: hidden;
-  background: #EFEBE3 url(../assets/img/office-bg.jpg) center / cover;
-  border: 1px solid var(--line);
+  position: relative; isolation: isolate; overflow: hidden;
   display: flex; align-items: flex-end; justify-content: center;
+  background: #EFEBE3 url(../assets/img/office-bg.jpg) center / cover;
 }
-.portrait .karen { width: 88%; position: relative; }
+.portrait .karen { position: relative; z-index: -1; width: min(92%, 38rem); }
+/* navy fade at the bottom so the quote reads on the photo */
+.portrait::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 45%; z-index: 0;
+  background: linear-gradient(0deg, rgba(10, 29, 56, 0.9) 0%, rgba(10, 29, 56, 0.55) 45%, rgba(10, 29, 56, 0) 100%);
+  pointer-events: none;
+}
 .portrait-quote {
-  position: absolute; left: var(--s-4); right: var(--s-4); bottom: var(--s-4);
+  position: absolute; z-index: 1;
+  left: clamp(20px, 3vw, 40px); right: clamp(20px, 3vw, 40px); bottom: clamp(20px, 3vw, 40px);
   margin: 0;
-  background: var(--surface);
-  border-radius: var(--r-inner);
-  padding: var(--s-4) var(--s-5);
-  box-shadow: var(--shadow-lg);
+  padding-left: var(--s-4);
   border-left: 3px solid var(--gold);
 }
-.portrait-quote p { font-family: var(--font-head); font-weight: 600; font-size: var(--fs-quote); line-height: 1.45; color: var(--ink); letter-spacing: -0.01em; }
-.portrait-quote cite { display: block; margin-top: var(--s-2); font-style: normal; font-size: var(--fs-small); line-height: var(--lh-small); color: var(--muted); }
+.portrait-quote p { font-family: var(--font-head); font-weight: 600; font-size: var(--fs-h3-lg); line-height: 1.4; color: #fff; letter-spacing: -0.01em; }
+.portrait-quote cite { display: block; margin-top: var(--s-2); font-style: normal; font-size: var(--fs-small); line-height: var(--lh-small); color: var(--gold); font-weight: 600; }
 
 .future-head { margin-bottom: var(--s-6); }
 
@@ -920,11 +925,12 @@ p { margin: 0; }
   .main-nav a.nav-cta { margin: var(--s-2) 0 0; text-align: center; }
   .nav-toggle { display: inline-flex; }
 
-  .split, .how-grid, .vision-grid, .contact-grid, .who-grid { grid-template-columns: 1fr; }
+  .split, .how-grid, .vision-hero, .contact-grid, .who-grid { grid-template-columns: 1fr; }
+  .vision-hero { min-height: 0; }
+  .vision-copy-wrap { padding: var(--section) var(--gutter); }
   .hero-film::before { background: linear-gradient(0deg, rgba(10, 29, 56, 0.92) 0%, rgba(10, 29, 56, 0.7) 55%, rgba(10, 29, 56, 0.35) 100%); }
-  .portrait { min-height: 0; flex-direction: column; align-items: center; padding-top: var(--s-6); }
-  .portrait .karen { width: min(82%, 440px); }
-  .portrait-quote { position: relative; left: auto; right: auto; bottom: auto; align-self: stretch; margin: -24px var(--s-4) var(--s-4); }
+  .portrait { min-height: clamp(420px, 95vw, 640px); }
+  .portrait .karen { width: min(86%, 30rem); }
   .stat-card { min-height: 0; }
 }
 
