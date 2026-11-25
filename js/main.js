@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
           show("Something went wrong. Please try again or email us directly.", "error");
         })
         .then(function () {
-          if (button) { button.disabled = false; button.textContent = "Submit"; }
+          if (button) { button.disabled = false; button.textContent = "Request my call"; }
         });
     });
   }
