@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us | CertSmart</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..600&amp;family=Plus+Jakarta+Sans:wght@500..800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261125k">
+</head>
+<body class="page-contact">
+  <div class="patent-bar">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+    Proprietary Technology &mdash; Patent Pending
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="index.html" class="brand"><img src="assets/img/logo.webp" alt="CertSmart logo" width="300" height="127"></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+        <svg class="icon icon-menu" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="how-it-works.html">How it Works</a>
+        <a href="vision.html">Vision</a>
+        <a href="contact.html" class="active nav-cta" aria-current="page">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap contact-grid">
+        <div class="contact-copy">
+          <span class="eyebrow">Contact Us</span>
+          <h1 class="h1">See What Your Certificates <span class="mark">Are Hiding.</span></h1>
+          <div class="prose">
+            <p class="lead">Have questions about CertSmart or our certifications? Reach out to us. We&rsquo;d love to hear from you!</p>
+            <p>Submit your information and we&rsquo;ll schedule a 20-minute call to show you exactly what CertSmart finds in your current certificates.</p>
+          </div>
+          <ul class="info-list">
+            <li><span class="icon-tile"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><div><a href="mailto:info@certsmart.ai">info@certsmart.ai</a><small>We reply within one business day</small></div></li>
+            <li><span class="icon-tile"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><a href="tel:+19086332040">908-633-2040</a></div></li>
+            <li><span class="icon-tile"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span><div><span>Nationwide Service</span><small>Supporting companies across the U.S.</small></div></li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <h2 class="h2">Contact Us</h2>
+          <!--
+            FORM SETUP: connected to Formspree (formspree.io). Submissions
+            deliver to the inbox configured on the Formspree dashboard.
+            To change the destination or endpoint, update the account at
+            formspree.io and swap the URL in the form's action attribute below.
+          -->
+          <form id="contact-form" action="https://formspree.io/f/xwlkgrvr" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="full-name">Full Name*</label>
+                <input type="text" id="full-name" name="full_name" autocomplete="name" required>
+              </div>
+              <div class="form-group">
+                <label for="company-name">Company Name*</label>
+                <input type="text" id="company-name" name="company_name" autocomplete="organization" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email*</label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+              </div>
+              <div class="form-group">
+                <label for="describes-you">What best describes you?*</label>
+                <select id="describes-you" name="describes_you" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="General Contractor">General Contractor</option>
+                  <option value="Subcontractor">Subcontractor</option>
+                  <option value="Insurance Agent / Broker">Insurance Agent / Broker</option>
+                  <option value="Vendor / Service Provider">Vendor / Service Provider</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" id="other-specify-group" hidden>
+              <label for="other-specify">If Other, please specify:</label>
+              <input type="text" id="other-specify" name="other_specify">
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message*</label>
+              <textarea id="message" name="message" required rows="6"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            <p class="form-note"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Your information is kept private and is never shared.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a href="index.html" class="footer-brand"><img src="assets/img/logo.webp" alt="CertSmart logo" width="300" height="127"></a>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="how-it-works.html">How it Works</a>
+        <a href="vision.html">Vision</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+      <div class="footer-right">
+        <a href="mailto:info@certsmart.ai">info@certsmart.ai</a>
+        <a class="social" href="https://www.linkedin.com/in/karen-adamsbaum/" aria-label="Karen Adamsbaum on LinkedIn" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+      <span class="footer-copy">&copy; 2026 CertSmart</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=20261125d"></script>
+</body>
+</html>
