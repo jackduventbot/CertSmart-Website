@@ -249,8 +249,37 @@ p { margin: 0; }
 .hero-copy .h-display > span { display: block; }
 .hero-copy .lead { margin-bottom: var(--s-6); }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-5); }
-.hero-media { display: flex; align-items: center; justify-content: center; }
-.hero-media img { width: auto; max-width: 88%; max-height: min(68vh, 40rem); }
+.hero-media { display: flex; align-items: center; justify-content: center; perspective: 1200px; }
+.hero-media img { display: block; width: auto; max-width: 100%; max-height: min(68vh, 40rem); }
+
+/* Interactive hero clipboard: tilt (JS), gentle float, light sweep */
+.tilt-card {
+  position: relative;
+  max-width: 88%;
+  transform-style: preserve-3d;
+  transition: transform 180ms ease-out;
+  will-change: transform;
+}
+.float { position: relative; animation: hero-float 6s ease-in-out infinite; }
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+/* sweep is masked to the image shape, so it only lights the clipboard */
+.sheen {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.75) 50%, transparent 62%) no-repeat;
+  background-size: 300% 100%;
+  background-position: 120% 0;
+  -webkit-mask: url(../assets/img/hero-clipboard.webp) center / contain no-repeat;
+          mask: url(../assets/img/hero-clipboard.webp) center / contain no-repeat;
+  opacity: 0;
+}
+.hero-media.is-sweeping .sheen { animation: hero-sheen 1100ms ease-out; }
+@keyframes hero-sheen {
+  0% { background-position: 120% 0; opacity: 1; }
+  100% { background-position: -20% 0; opacity: 1; }
+}
 
 .founder-chip { display: flex; align-items: center; gap: var(--s-3); }
 .founder-chip .av {
@@ -773,7 +802,7 @@ p { margin: 0; }
   .nav-toggle { display: inline-flex; }
 
   .hero-grid, .split, .how-grid, .vision-grid, .contact-grid, .who-grid { grid-template-columns: 1fr; }
-  .hero-media img { width: min(70%, 440px); }
+  .tilt-card { max-width: min(70%, 440px); }
   .portrait { min-height: 0; flex-direction: column; align-items: center; padding-top: var(--s-6); }
   .portrait .karen { width: min(82%, 440px); }
   .portrait-quote { position: relative; left: auto; right: auto; bottom: auto; align-self: stretch; margin: -24px var(--s-4) var(--s-4); }
@@ -799,9 +828,9 @@ p { margin: 0; }
   .patent-bar { font-size: 0.75rem; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
   .hero-actions .btn { width: 100%; }
-  .hero-media img { width: 80%; }
+  .tilt-card { max-width: 80%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition: none !important; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }

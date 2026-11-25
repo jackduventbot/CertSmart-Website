@@ -22,6 +22,37 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Home hero: clipboard tilts toward the mouse and a light sweep crosses it
+  // on load and each time the pointer enters. Skipped for reduced motion.
+  var tilt = document.querySelector("[data-tilt]");
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (tilt && !reduceMotion) {
+    var card = tilt.querySelector(".tilt-card");
+    var MAX = 10; // degrees
+    function sweep() {
+      tilt.classList.remove("is-sweeping");
+      void tilt.offsetWidth; // restart the animation
+      tilt.classList.add("is-sweeping");
+    }
+    tilt.addEventListener("animationend", function (e) {
+      if (e.animationName === "hero-sheen") tilt.classList.remove("is-sweeping");
+    });
+    tilt.addEventListener("pointerenter", function (e) {
+      if (e.pointerType === "mouse") sweep();
+    });
+    tilt.addEventListener("pointermove", function (e) {
+      if (e.pointerType !== "mouse") return;
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;  // -0.5 .. 0.5
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = "rotateY(" + (x * MAX * 2).toFixed(2) + "deg) rotateX(" + (-y * MAX * 2).toFixed(2) + "deg) scale(1.02)";
+    });
+    tilt.addEventListener("pointerleave", function () {
+      card.style.transform = "";
+    });
+    window.addEventListener("load", function () { setTimeout(sweep, 400); });
+  }
+
   // How It Works: steps are linked to the demo video. Clicking a step jumps
   // the video to that part; while it plays, the matching step lights up and
   // its progress bar fills. Start times come from each step's data-start.
