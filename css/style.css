@@ -239,22 +239,6 @@ p { margin: 0; }
 .nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
 .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
-/* ---------- Media panels ---------- */
-.media-panel {
-  position: relative;
-  border-radius: var(--r-card);
-  background: linear-gradient(180deg, #F4EFE5 0%, #EDE7DB 100%);
-  border: 1px solid var(--line);
-  overflow: hidden;
-  display: grid; place-items: center;
-  padding: var(--pad-panel);
-}
-.media-panel .dots {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; opacity: 0.18; mix-blend-mode: multiply;
-}
-.media-panel > img:not(.dots) { position: relative; }
-
 /* ---------- Home ---------- */
 .hero { padding-block: clamp(32px, 5vw, 64px) var(--section); }
 .hero-grid {
@@ -352,8 +336,8 @@ p { margin: 0; }
 }
 .split-copy .h1 { margin-bottom: var(--s-5); }
 .split-copy .prose { margin-bottom: var(--s-6); }
-.device-panel { aspect-ratio: 4 / 3; }
-.device-panel img:not(.dots) { width: 94%; }
+.device-panel { display: flex; align-items: center; justify-content: center; }
+.device-panel img { width: 100%; }
 
 .benefits {
   display: grid;
