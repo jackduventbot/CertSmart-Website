@@ -22,6 +22,53 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // How It Works: steps are linked to the demo video. Clicking a step jumps
+  // the video to that part; while it plays, the matching step lights up and
+  // its progress bar fills. Start times come from each step's data-start.
+  var stepList = document.querySelector("[data-steps]");
+  var demo = document.querySelector(".video-frame video");
+  if (stepList && demo) {
+    var steps = Array.prototype.slice.call(stepList.querySelectorAll(".step"));
+    var starts = steps.map(function (s) { return parseFloat(s.getAttribute("data-start")) || 0; });
+
+    function render(t) {
+      var dur = demo.duration || 0;
+      var active = 0;
+      for (var i = 0; i < starts.length; i++) if (t >= starts[i]) active = i;
+      steps.forEach(function (s, i) {
+        var end = i + 1 < starts.length ? starts[i + 1] : dur;
+        var p = i < active ? 1 : i > active ? 0 : end > starts[i] ? (t - starts[i]) / (end - starts[i]) : 0;
+        s.classList.toggle("is-active", i === active);
+        s.classList.toggle("is-done", i < active || (demo.ended && i === active));
+        s.querySelector(".step-body").setAttribute("aria-pressed", i === active ? "true" : "false");
+        s.querySelector(".step-progress span").style.width = Math.max(0, Math.min(1, p)) * 100 + "%";
+      });
+      stepList.style.setProperty("--p", dur ? Math.min(1, t / dur) : 0);
+    }
+
+    steps.forEach(function (s, i) {
+      var btn = s.querySelector(".step-body");
+      btn.addEventListener("click", function () {
+        demo.currentTime = starts[i];
+        render(starts[i]);
+        var play = demo.play();
+        if (play && play.catch) play.catch(function () {});
+      });
+      // Arrow keys move between steps
+      btn.addEventListener("keydown", function (e) {
+        var next = e.key === "ArrowDown" ? i + 1 : e.key === "ArrowUp" ? i - 1 : -1;
+        if (next >= 0 && next < steps.length) {
+          e.preventDefault();
+          steps[next].querySelector(".step-body").focus();
+        }
+      });
+    });
+
+    ["timeupdate", "seeked", "loadedmetadata", "ended"].forEach(function (ev) {
+      demo.addEventListener(ev, function () { render(demo.currentTime); });
+    });
+  }
+
   // Contact form: show/require "If Other, please specify" only when
   // "Other" is chosen in the "What best describes you?" dropdown.
   var describesSelect = document.getElementById("describes-you");

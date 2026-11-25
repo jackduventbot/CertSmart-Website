@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..600&amp;family=Plus+Jakarta+Sans:wght@500..800&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261125l">
+  <link rel="stylesheet" href="css/style.css?v=20261125m">
 </head>
 <body class="page-how">
   <div class="patent-bar">
@@ -40,19 +40,28 @@
         <div class="how-copy">
           <span class="eyebrow">How It Works</span>
           <h1 class="h1">From Agreement<span class="soft">to Compliance.</span></h1>
-          <p class="steps-label">Three Simple Steps</p>
-          <ol class="steps">
-            <li class="step">
-              <span class="step-num">1</span>
-              <div class="step-body"><div><h3>Upload Agreement</h3><p>Upload Subcontractor Agreement</p></div><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 12v6"/><path d="m15 15-3-3-3 3"/></svg></div>
+          <p class="steps-label">Three Simple Steps <span class="steps-hint"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg> Click a step to see it in the demo</span></p>
+          <ol class="steps" data-steps>
+            <li class="step is-active" data-start="0">
+              <span class="step-num"><span class="n">1</span><svg class="icon done-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <button type="button" class="step-body" aria-pressed="true">
+                <span class="step-text"><span class="step-title">Upload Agreement</span><span class="step-desc">Upload Subcontractor Agreement</span></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 12v6"/><path d="m15 15-3-3-3 3"/></svg>
+                <span class="step-progress" aria-hidden="true"><span></span></span>
+              </button>
             </li>
-            <li class="step">
-              <span class="step-num">2</span>
-              <div class="step-body"><div><h3>Upload Policies</h3><p>Upload required policies.</p></div><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg></div>
+            <li class="step" data-start="15.5">
+              <span class="step-num"><span class="n">2</span><svg class="icon done-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <button type="button" class="step-body" aria-pressed="false">
+                <span class="step-text"><span class="step-title">Upload Policies</span><span class="step-desc">Upload required policies.</span></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>
+                <span class="step-progress" aria-hidden="true"><span></span></span>
+              </button>
             </li>
-            <li class="step">
-              <span class="step-num">3</span>
-              <div class="step-body"><div><h3>Compliance Review &amp; COI</h3><p>Reviews compliance and prepares certificate.</p></div><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg></div>
+            <li class="step" data-start="34">
+              <span class="step-num"><span class="n">3</span><svg class="icon done-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <button type="button" class="step-body" aria-pressed="false">
+                <span class="step-text"><span class="step-title">Compliance Review &amp; COI</span><span class="step-desc">Reviews compliance and prepares certificate.</span></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
+                <span class="step-progress" aria-hidden="true"><span></span></span>
+              </button>
             </li>
           </ol>
         </div>
@@ -122,6 +131,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=20261125d"></script>
+  <script src="js/main.js?v=20261125m"></script>
 </body>
 </html>
