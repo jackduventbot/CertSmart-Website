@@ -470,7 +470,10 @@ p { margin: 0; }
   align-items: start;
 }
 .voices-head .h2 { margin-bottom: var(--s-5); }
-.quotes { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--gap); align-items: start; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); align-items: stretch; }
+.quotes .quote { display: flex; flex-direction: column; }
+.quotes .quote figcaption { margin-top: auto; }
+.quotes .quote p { margin-bottom: var(--s-5); }
 .quote {
   margin: 0;
   border-radius: var(--r-card);
@@ -492,7 +495,6 @@ p { margin: 0; }
 .quote--dark figcaption { border-top-color: rgba(255, 255, 255, 0.12); }
 .quote figcaption b { font-family: var(--font-head); color: inherit; font-weight: 600; }
 .quote:not(.quote--dark) figcaption b { color: var(--ink); }
-.quote:nth-child(2) { margin-top: clamp(0px, 4vw, 48px); }
 
 /* ---------- Vision ---------- */
 .vision-grid {
@@ -786,7 +788,6 @@ p { margin: 0; }
   .benefit:nth-child(n+2) { border-top: 1px solid var(--line); }
   .board-grid, .quotes, .form-row { grid-template-columns: 1fr; }
   .form-row { gap: 0; }
-  .quote:nth-child(2) { margin-top: 0; }
   .future-grid { grid-template-columns: 1fr; }
   .future-item, .future-item:nth-child(even) { padding-left: 0; border-left: 0; }
   .footer-inner { grid-template-columns: 1fr; justify-items: start; }
