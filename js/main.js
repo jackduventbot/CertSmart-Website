@@ -22,6 +22,89 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Home hero: three muted background clips play in sequence and crossfade.
+  // Progress bars show the current clip (click to jump); the round button pauses.
+  // Pauses when off screen or the tab is hidden; no autoplay for reduced motion.
+  var film = document.querySelector("[data-film]");
+  if (film) {
+    var clips = Array.prototype.slice.call(film.querySelectorAll(".film video"));
+    var dots = Array.prototype.slice.call(film.querySelectorAll(".film-dot"));
+    var toggleBtn = film.querySelector(".film-toggle");
+    var FADE = 1.2; // seconds of overlap between clips
+    var current = 0, userPaused = false, inView = true, switching = false;
+    var prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function setPausedUI(paused) {
+      toggleBtn.setAttribute("aria-pressed", paused ? "true" : "false");
+      toggleBtn.setAttribute("aria-label", paused ? "Play background video" : "Pause background video");
+    }
+    function shouldPlay() { return !userPaused && inView && !document.hidden; }
+    function playClip(v) {
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { userPaused = true; setPausedUI(true); });
+    }
+    function show(i) {
+      var prev = clips[current];
+      current = i;
+      var next = clips[i];
+      next.currentTime = 0;
+      clips.forEach(function (v, k) { v.classList.toggle("is-on", k === i); });
+      dots.forEach(function (d, k) {
+        d.classList.toggle("is-on", k === i);
+        if (k === i) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current");
+        d.querySelector("span").style.setProperty("--p", k < i ? 1 : 0);
+      });
+      if (shouldPlay()) playClip(next);
+      // let the previous clip finish its fade, then stop it
+      setTimeout(function () { if (prev !== clips[current]) prev.pause(); switching = false; }, FADE * 1000);
+      // warm up the clip after this one
+      clips[(i + 1) % clips.length].preload = "auto";
+    }
+
+    clips.forEach(function (v, i) {
+      v.addEventListener("timeupdate", function () {
+        if (i !== current || !v.duration) return;
+        dots[i].querySelector("span").style.setProperty("--p", Math.min(1, v.currentTime / v.duration));
+        if (!switching && v.duration - v.currentTime <= FADE) {
+          switching = true;
+          show((i + 1) % clips.length);
+        }
+      });
+      // safety net if timeupdate misses the fade window
+      v.addEventListener("ended", function () {
+        if (i === current && !switching) { switching = true; show((i + 1) % clips.length); }
+      });
+    });
+
+    dots.forEach(function (d, i) {
+      d.addEventListener("click", function () {
+        if (i === current) return;
+        if (userPaused) { userPaused = false; setPausedUI(false); }
+        switching = true;
+        show(i);
+      });
+    });
+
+    toggleBtn.addEventListener("click", function () {
+      userPaused = !userPaused;
+      setPausedUI(userPaused);
+      if (userPaused) clips[current].pause(); else playClip(clips[current]);
+    });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        if (shouldPlay()) playClip(clips[current]); else clips[current].pause();
+      }, { threshold: 0.15 }).observe(film);
+    }
+    document.addEventListener("visibilitychange", function () {
+      if (shouldPlay()) playClip(clips[current]); else clips[current].pause();
+    });
+
+    if (prefersReduced) { userPaused = true; setPausedUI(true); }
+    else playClip(clips[0]);
+  }
+
   // How It Works: steps are linked to the demo video. Clicking a step jumps
   // the video to that part; while it plays, the matching step lights up and
   // its progress bar fills. Start times come from each step's data-start.
