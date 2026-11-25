@@ -829,7 +829,7 @@ p { margin: 0; }
 .photo-badge small { display: block; font-size: var(--fs-small); color: var(--muted); line-height: var(--lh-small); }
 
 @media (max-width: 960px) {
-  .section-head, .photo-split, .checks-groups { grid-template-columns: 1fr; }
+  .section-head, .photo-split { grid-template-columns: 1fr; }
   .audience { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; grid-auto-rows: 260px; }
   .audience .tile:first-child, .audience .tile:last-child { grid-row: auto; grid-column: 1 / -1; }
 }
@@ -845,34 +845,6 @@ p { margin: 0; }
   .photo-band::before { background: linear-gradient(180deg, rgba(10, 29, 56, 0.35) 0%, rgba(10, 29, 56, 0.92) 55%); }
   .band-actions .btn { flex: 1 1 auto; }
 }
-
-/* ---------- What CertSmart checks (coverage + endorsement chips) ---------- */
-.checks-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); align-items: stretch; }
-.chip-group {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-card);
-  box-shadow: var(--shadow-sm);
-  padding: var(--pad-card);
-}
-.chip-group h3 {
-  font-size: var(--fs-label); font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: var(--s-4);
-}
-.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
-.chip {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 14px 7px 10px;
-  border-radius: 999px;
-  background: var(--bg);
-  border: 1px solid var(--line-strong);
-  font-size: var(--fs-small); font-weight: 500; color: var(--ink);
-  line-height: var(--lh-small);
-  transition: border-color var(--ease), background-color var(--ease);
-}
-.chip .icon { width: 15px; height: 15px; stroke-width: 2.25; color: var(--navy-600); }
-.chip:hover { border-color: rgba(10, 29, 56, 0.28); background: var(--surface); }
 
 /* ---------- Founder credentials (About) ---------- */
 .fact-list { list-style: none; margin: var(--s-5) 0 0; padding: 0; display: grid; gap: var(--s-3); }

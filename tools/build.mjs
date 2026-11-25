@@ -11,7 +11,7 @@ const QUOTE = '<svg class="qmark" viewBox="0 0 32 32" aria-hidden="true" fill="c
 const UNDERLINE = '<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8.5C40 3.5 120 2.5 197 6.5"/></svg>';
 const NAV = [["index.html", "Home"], ["about.html", "About"], ["how-it-works.html", "How it Works"], ["vision.html", "Vision"], ["contact.html", "Contact Us"]];
 const FONTS = "https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..600&amp;family=Plus+Jakarta+Sans:wght@500..800&amp;display=swap";
-const V = "20261126d";
+const V = "20261127a";
 
 function page(filename, title, bodyClass, main, desc = "") {
   const links = NAV.map(([href, label]) => {
@@ -84,9 +84,6 @@ ${main}
 }
 
 // ---------------------------------------------------------------- Home
-const checksCoverage = ["General Liability", "Auto Liability", "Umbrella / Excess", "Workers&rsquo; Compensation", "Professional Liability (E&amp;O)"];
-const checksTerms = ["Additional Insured &middot; Ongoing Ops", "Additional Insured &middot; Completed Ops", "Waiver of Subrogation", "Primary &amp; Non-Contributory", "Notice of Cancellation", "Carrier A.M. Best Rating"];
-const chips = (list) => list.map((t) => `<li class="chip">${ic("check")}${t}</li>`).join("");
 page("index.html", "CertSmart | Insurance Compliance, Simplified", "page-home", `    <section class="hero-film" data-film aria-label="CertSmart introduction">
       <div class="film" aria-hidden="true">
         <video class="is-on" muted playsinline preload="auto" poster="assets/video/hero-poster.jpg" src="assets/video/hero-1-site.mp4"></video>
@@ -156,28 +153,6 @@ page("index.html", "CertSmart | Insurance Compliance, Simplified", "page-home", 
 
     <section class="section section--alt">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">What CertSmart checks</span>
-            <h2 class="h2">Every requirement, checked against the contract.</h2>
-          </div>
-          <p>A certificate lists coverage. CertSmart reads the policies and endorsements behind it.</p>
-        </div>
-        <div class="checks-groups">
-          <div class="chip-group">
-            <h3>Coverage</h3>
-            <ul class="chips">${chips(checksCoverage)}</ul>
-          </div>
-          <div class="chip-group">
-            <h3>Endorsements &amp; terms</h3>
-            <ul class="chips">${chips(checksTerms)}</ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
         <div class="who-grid">
           <div class="stat-card">
             <span class="n">70%</span>
@@ -201,7 +176,7 @@ page("index.html", "CertSmart | Insurance Compliance, Simplified", "page-home", 
       </div>
     </section>
 
-    <section class="section section--tight-top">
+    <section class="section">
       <div class="wrap">
         <div class="photo-band">
           <img src="assets/img/photo-signing.webp" alt="Two people signing a contract at a wooden desk" loading="lazy">
