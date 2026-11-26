@@ -11,7 +11,7 @@ const QUOTE = '<svg class="qmark" viewBox="0 0 32 32" aria-hidden="true" fill="c
 const UNDERLINE = '<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8.5C40 3.5 120 2.5 197 6.5"/></svg>';
 const NAV = [["index.html", "Home"], ["about.html", "About"], ["how-it-works.html", "How it Works"], ["vision.html", "Vision"], ["contact.html", "Contact Us"]];
 const FONTS = "https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..600&amp;family=Plus+Jakarta+Sans:wght@500..800&amp;display=swap";
-const V = "20261127a";
+const V = "20261127b";
 
 function page(filename, title, bodyClass, main, desc = "") {
   const links = NAV.map(([href, label]) => {
@@ -481,6 +481,13 @@ page("contact.html", "Contact Us | CertSmart", "page-contact", `    <section cla
             <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
             <p class="form-note">${ic("lock")}Your information is kept private and is never shared.</p>
           </form>
+          <div class="form-success" id="form-success" hidden tabindex="-1" role="status" aria-live="polite">
+            <span class="success-icon">${ic("check")}</span>
+            <h3 id="form-success-title">Thanks for contacting us!</h3>
+            <p>One of our team will reach out to you shortly&mdash;usually within one business day&mdash;to schedule your 20-minute call.</p>
+            <p class="form-success-alt">Need us sooner? Call <a href="tel:+19086332040">908-633-2040</a> or email <a href="mailto:info@certsmart.ai">info@certsmart.ai</a>.</p>
+            <button type="button" class="btn btn-ghost" id="form-again">Send another message</button>
+          </div>
         </div>
       </div>
     </section>`, "Book a 20-minute call with CertSmart and see exactly what your current certificates of insurance are missing. Nationwide service.");

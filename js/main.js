@@ -200,9 +200,24 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then(function (response) {
           if (response.ok) {
+            // swap the form for the thank-you panel, greeting by first name
+            var nameField = form.querySelector('[name="full_name"]');
+            var first = nameField ? nameField.value.trim().split(/\s+/)[0] : "";
+            var card = form.closest(".form-card");
+            var success = document.getElementById("form-success");
+            var title = document.getElementById("form-success-title");
             form.reset();
             if (otherGroup) otherGroup.hidden = true;
-            show("Thanks! Your message has been sent.", "success");
+            if (status) status.className = "form-status";
+            if (success) {
+              if (title) title.textContent = first ? "Thanks for contacting us, " + first + "!" : "Thanks for contacting us!";
+              form.hidden = true;
+              if (card) card.classList.add("is-sent");
+              success.hidden = false;
+              success.focus();
+            } else {
+              show("Thanks for contacting us! One of our team will reach out shortly.", "success");
+            }
           } else {
             show("Something went wrong. Please try again or email us directly.", "error");
           }
@@ -214,5 +229,18 @@ document.addEventListener("DOMContentLoaded", function () {
           if (button) { button.disabled = false; button.textContent = "Request my call"; }
         });
     });
+
+    // "Send another message" brings the form back
+    var again = document.getElementById("form-again");
+    if (again) {
+      again.addEventListener("click", function () {
+        var card = form.closest(".form-card");
+        document.getElementById("form-success").hidden = true;
+        if (card) card.classList.remove("is-sent");
+        form.hidden = false;
+        var firstField = form.querySelector("input");
+        if (firstField) firstField.focus();
+      });
+    }
   }
 });

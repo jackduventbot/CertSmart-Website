@@ -37,7 +37,8 @@ One `DOMContentLoaded` handler with independent, guarded blocks:
 - Mobile nav toggle.
 - **Home video hero** (`[data-film]`): three muted clips in `assets/video/hero-*.mp4` crossfade (~1.2s overlap, triggered from `timeupdate`), progress bars jump between clips, a pause toggle; pauses off-screen/hidden-tab; no autoplay under `prefers-reduced-motion`.
 - **How It Works steps** (`[data-steps]`): each step's `data-start` (seconds, set in `build.mjs`) seeks `assets/video/how-it-works-demo.mp4`; playback drives active/done states and progress. If the demo video is re-edited, re-derive these timestamps (ffmpeg is installed; extract frames to find step boundaries).
-- **Contact form**: posts to Formspree via `fetch` (endpoint is the form's `action` in `build.mjs`); shows/requires the "If Other, please specify" field. Submitting it sends a real message.
+- **Contact form**: posts to Formspree via `fetch` (endpoint is the form's `action` in `build.mjs`); shows/requires the "If Other, please specify" field. On success the form is swapped for the `#form-success` thank-you panel (greets by first name). Submitting it sends a real message — to test locally, stub `window.fetch` in the page first.
+- **Confirmation email to the submitter** is not sent by the site: it is a Formspree autoresponse (Professional plan for text, Business plan for custom templates), configured in the owner's Formspree account. Ready-to-paste templates live in `email/` (`autoresponse.html` uses table layout, inline styles and the PNG logo at `assets/img/email/certsmart-logo.png` via an absolute URL — update URLs if the site moves to certsmart.ai).
 
 ## Content and assets
 
